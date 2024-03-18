@@ -1,2 +1,2 @@
 # universal-react
-React submodule for universal modules
+React + Vite submodule for universal modules
