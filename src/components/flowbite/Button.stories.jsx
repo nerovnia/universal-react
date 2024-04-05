@@ -2,7 +2,7 @@ import { fn } from '@storybook/test';
 import { Button } from '.';
 
 export default {
-  title: 'Flowbite/Button',
+  title: 'Button',
   component: Button,
   parameters: {
     layout: 'centered',
