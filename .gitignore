@@ -130,3 +130,10 @@ dist
 .pnp.*
 
 *storybook.log
+
+# to run vite in https mode you need to create a self-signed certificate (specific for your OS way) 
+# and place cert.pem and key.pem in the root/.cert folder
+.cert
+
+#mac
+.DS_Store
