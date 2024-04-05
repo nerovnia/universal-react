@@ -1,3 +1,5 @@
+import 'flowbite/dist/flowbite.min.css';
+
 /** @type { import('@storybook/react').Preview } */
 const preview = {
   parameters: {

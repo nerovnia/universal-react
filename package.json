@@ -8,8 +8,18 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook-bootstrap": "npm run build-storybook -- --config-dir .libraries-storybooks/.storybook-bootstrap -o .storybook-static/bootstrap",
+    "build-storybook-flowbite": "npm run build-storybook -- --config-dir .libraries-storybooks/.storybook-flowbite -o .storybook-static/flowbite",
+    "build-storybook-children": "concurrently 'npm run build-storybook-flowbite' 'npm run build-storybook-bootstrap'",
+    "build-storybook-parent": "npm run build-storybook -- -o .storybook-static/main",
+    "build-storybook": "storybook build",
+    "build-storybooks": "npm run build-storybook-parent && npm run build-storybook-children",
+    "storybook-bootstrap": "npm run storybook -- --config-dir .libraries-storybooks/.storybook-bootstrap --port 6002 --no-open",
+    "storybook-flowbite": "npm run storybook -- --config-dir .libraries-storybooks/.storybook-flowbite --port 6003 --no-open",
+    "storybook-children": "concurrently 'npm run storybook-bootstrap' 'npm run storybook-flowbite'",
+    "storybook": "storybook dev",
+    "storybook-parent": "wait-on http://localhost:6002 && wait-on http://localhost:6003 && npm run storybook -- --port 6001",
+    "storybook-main": "concurrently 'npm run storybook-children' 'npm run storybook-parent'"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
@@ -35,6 +45,7 @@
     "@types/react-dom": "^18.2.21",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.18",
+    "concurrently": "^8.2.2",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.0",
     "eslint-plugin-react-hooks": "^4.6.0",
@@ -44,7 +55,8 @@
     "prop-types": "^15.8.1",
     "storybook": "^8.0.4",
     "tailwindcss": "^3.4.1",
-    "vite": "^5.1.6"
+    "vite": "^5.1.6",
+    "wait-on": "^7.2.0"
   },
   "eslintConfig": {
     "extends": [
